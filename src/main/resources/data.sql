@@ -1,6 +1,18 @@
-INSERT INTO tasks (description, task_status, local_date_time) VALUES
-  ('Task 1 Description', 'NOT_STARTED', '2024-01-26T12:00:00'),
-  ('Task 2 Description', 'IN_PROGRESS', '2024-01-26T14:30:00'),
-  ('Task 3 Description', 'COMPLETED', '2024-01-27T10:45:00'),
-  ('Task 4 Description', 'IN_PROGRESS', '2024-01-27T15:20:00'),
-  ('Task 5 Description', 'NOT_STARTED', '2024-01-28T09:00:00');
+-- Вставка данных в таблицу "User"
+INSERT INTO users (username, password, email, role) VALUES
+('user1', 'password1', 'user1@example.com', 'ROLE_USER'),
+('user2', 'password2', 'user2@example.com', 'ROLE_USER'),
+('admin', 'adminpassword', 'admin@example.com', 'ROLE_ADMIN');
+
+-- Вставка данных в таблицу "Project"
+INSERT INTO projects (name, description, local_date_time) VALUES
+('ProjectA', 'Description for ProjectA', '2022-01-01'),
+('ProjectB', 'Description for ProjectB', '2022-02-15'),
+('ProjectC', 'Description for ProjectC', '2022-03-30');
+
+-- Вставка рандомных данных для таблицы users_projects
+INSERT INTO users_projects (user_id, project_id) VALUES
+    (1, 1),
+    (1, 2),
+    (2, 1),
+    (3, 3);
