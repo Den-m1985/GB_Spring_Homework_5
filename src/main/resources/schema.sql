@@ -1,6 +1,6 @@
-CREATE TABLE tasks (
+CREATE TABLE notes (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(255) NOT NULL,
-    task_status VARCHAR(50) NOT NULL,
+    header VARCHAR(255) NOT NULL,
+    content VARCHAR(50) NOT NULL,
     local_date_time TIMESTAMP NOT NULL
 );

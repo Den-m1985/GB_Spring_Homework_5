@@ -1,35 +1,26 @@
 Базовое задание:
 Условие:
-Вам предстоит создать приложение для управления списком задач 
-с использованием Spring Boot и Spring Data JPA. 
-Требуется реализовать следующие функции:
+Важно! В проекте используем обязательно Spring Data и Lombok!
 
-Добавление задачи. Подсказка метод в контроллере: 
-    @PostMapping public Task addTask(@RequestBody Task task)
-Просмотр всех задач. Подсказка метод в контроллере: 
-    @GetMapping public List<Task> getAllTasks()
-Просмотр задач по статусу (например, "завершена", "в процессе", "не начата"). 
-Подсказка метод в контроллере: 
-    @GetMapping("/status/{status}") 
-    public List<Task> getTasksByStatus(@PathVariable TaskStatus status)
-Изменение статуса задачи. Подсказка метод в контроллере: 
-    @PutMapping("/{id}") public Task 
-    updateTaskStatus(@PathVariable Long id, @RequestBody Task task)
-Удаление задачи.
-Подсказка метод в контроллере:
-    @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable Long id)
+Разработайте небольшое веб-приложение на Spring Boot, 
+которое будет представлять из себя сервис для учета личных заметок.
 
-Репозитроий подсказка 
-    public interface TaskRepository extends JpaRepository<Task, Long>
+Приложение должно поддерживать следующие функции:
+Все методы контроллера возвращают ResponseEntity(как на семинаре)
+1. Добавление заметки. (Подсказка @PostMapping )
+2. Просмотр всех заметок.(Подсказка @GetMapping )
+3. Получение заметки по id. (Подсказка @GetMapping("/{id}") )
+4. Редактирование заметки.(Подсказка @PutMapping("/{id}") )
+5. Удаление заметки.(Подсказка @DeleteMapping("/{id}") )
 
-Структура задачи(класс Task):
-- ID (автоинкрементное)(тип Long)
-- Описание (не может быть пустым)(тип String)
-- Статус (одно из значений: "не начата", "в процессе", "завершена")(Тип TaskStatus )
-- Дата создания (автоматически устанавливается при создании задачи)(Тип LocalDateTime)
+   Структура заметки:
+- ID (автоинкрементное)(тип - Long)
+- Заголовок (не может быть пустым)(тип - String)
+- Содержимое (не может быть пустым)(тип - String)
+- Дата создания (автоматически устанавливается при создании заметки)(тип - LocalDateTime)
 
-Подсказка понадобится энумератор:
-enum TaskStatus {
-NOT_STARTED, IN_PROGRESS, COMPLETED;
-}
+Подсказка:
+Репозиторий насладует JpaRepository<Note, Long>. 
+В репозитории добавляем метод Optional<Note> findById(Long id);
+Подсказка:
+В проект добавляем зависимости: spring data jpa, h2, lombok, spring web
