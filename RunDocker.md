@@ -27,3 +27,10 @@ docker stop example_2_seminar_5-image
 
 удаляем котейнер:
 docker rm example_2_seminar_5-image
+
+
+-------------------------------------------------------
+https://www.baeldung.com/spring-boot-postgresql-docker
+docker-compose up
+docker exec -it db psql -U myuser
+docker-compose down
