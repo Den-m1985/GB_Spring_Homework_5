@@ -1,22 +1,27 @@
-version: '2'
+version: '3.8'
 
 services:
-  app:
-    image: 'martyanov-denis-postgres:latest'
-    build:
-      context: .
-    container_name: app
-    depends_on:
-      - db
+  postgres:
+    image: postgres:13-alpine
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
-      - SPRING_DATASOURCE_USERNAME=compose-postgres
-      - SPRING_DATASOURCE_PASSWORD=compose-postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      POSTGRES_USER: your_database_user
+      POSTGRES_PASSWORD: your_database_password
+      POSTGRES_DB: your_database_name
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
-  db:
-    image: 'postgres:13.1-alpine'
-    container_name: db
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
     environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/your_database_name
+      SPRING_DATASOURCE_USERNAME: your_database_user
+      SPRING_DATASOURCE_PASSWORD: your_database_password
+
+volumes:
+  postgres-data:

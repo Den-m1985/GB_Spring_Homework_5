@@ -3,6 +3,8 @@ docker run --name mynewdb -e POSTGRES_DB=mynewdb -e POSTGRES_USER=myuser -e POST
 
 заходим внутрь через консоль
 docker exec -it mynewdb psql -U myuser mynewdb
+docker exec -it postgres-container psql -U your_database_user -d your_database_name
+
 
 проверяем таблицы
 \dt
