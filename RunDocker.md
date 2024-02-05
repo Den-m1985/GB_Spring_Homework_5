@@ -1,38 +1,23 @@
-скрипт для создания базы данных в консоле:
-docker run --name mynewdb -e POSTGRES_DB=mynewdb -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
 
-заходим внутрь через консоль
-docker exec -it mynewdb psql -U myuser mynewdb
-docker exec -it postgres-container psql -U your_database_user -d your_database_name
+создаем образ базы данных:
+docker-compose up
 
+выводим в консоль все запущенные контейнеры:
+docker ps
 
-проверяем таблицы
+Копируем имя контейнера. Заходим внутрь контейнера:
+docker exec -it  gb_spring_homework_5-postgresdb-1 bash
+
+Мы должны быть внутри контейнера. Заходим в базу данных:
+psql -U myuser -d notes
+
+Показать таблицы:
 \dt
+
 выводим всех:
 select * from notes;
 
+Выход \q
+Выход exit
 
-
-собираем проект:
-docker build -t example_2_seminar_5-image .
-
-запускаем проект:
-docker run -p 5432:5432 -t example_2_seminar_5-image
-
-проверяем все запущенные контейнеры:
-docker ps
-проверяем все запущенные и остановленные контейнеры:
-docker ps -a
-
-останавливаем контейнер:
-docker stop example_2_seminar_5-image
-
-удаляем котейнер:
-docker rm example_2_seminar_5-image
-
-
--------------------------------------------------------
-https://www.baeldung.com/spring-boot-postgresql-docker
-docker-compose up
-docker exec -it db psql -U myuser
 docker-compose down
